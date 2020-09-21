@@ -47,15 +47,15 @@ X,X,X,G,G,X,X,X,
 X,X,X,G,G,X,X,X
 ]
 
-red_arrow = [
-X,X,X,R,R,X,X,X,
-X,X,R,R,R,R,X,X,
-X,R,X,R,R,X,R,X,
-R,X,X,R,R,X,X,R,
+red_off = [
 X,X,X,R,R,X,X,X,
 X,X,X,R,R,X,X,X,
-X,X,X,R,R,X,X,X,
-X,X,X,R,R,X,X,X
+R,R,X,R,R,X,R,R,
+R,R,X,R,R,X,R,R,
+R,R,X,X,X,X,R,R,
+R,R,X,X,X,X,R,R,
+R,R,R,R,R,R,R,R,
+R,R,R,R,R,R,R,R
 ]
 
 #sense.show_message("Flick the joystick in the appropriate direction", scroll_speed=0.1, text_colour=[100,100,100])
@@ -85,22 +85,44 @@ while play:
             if event.action != 'pressed':
                 continue
             if event.direction == 'left':
+                sense.set_rotation(270)
+                sleep(0.5)
+                sense.set_pixels(green_arrow)
+                sleep(0.5)
+                sense.set_rotation(0)
                 sense.show_message(STATE[3], scroll_speed=0.05)
                 msg = "%s" % (t)
                 sense.show_message(msg, scroll_speed=0.05)
             elif event.direction == 'right':
+                sense.set_rotation(90)
+                sleep(0.5)
+                sense.set_pixels(green_arrow)
+                sleep(0.5)
+                sense.set_rotation(0)
                 sense.show_message(STATE[2], scroll_speed=0.05)
                 msg = "%s" % (p)
                 sense.show_message(msg, scroll_speed=0.05)
             elif event.direction == 'up':
+                sense.set_rotation(0)
+                sleep(0.5)
+                sense.set_pixels(green_arrow)
+                sleep(0.5)
+                sense.set_rotation(0)
                 sense.show_message(STATE[0], scroll_speed=0.05)
                 msg = "%s" % (h)
                 sense.show_message(msg, scroll_speed=0.05)
             elif event.direction == 'down':
+                sense.set_rotation(180)
+                sleep(0.5)
+                sense.set_pixels(green_arrow)
+                sleep(0.5)
+                sense.set_rotation(0)
                 sense.show_message(STATE[1], scroll_speed=0.05)
                 msg = "%s, %s, %s" % (x, y, z)
                 sense.show_message(msg, scroll_speed=0.05)
             elif event.direction == 'middle':
+                sense.set_pixels(red_off)
+                sleep(0.5)
                 sense.set_pixels(NONE)
                 exit()
 
