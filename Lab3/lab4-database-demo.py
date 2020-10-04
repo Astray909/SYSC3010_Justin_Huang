@@ -5,7 +5,7 @@ dbconnect = sqlite3.connect("demo.db");
 dbconnect.row_factory = sqlite3.Row;
 cursor = dbconnect.cursor();
 
-cursor.execute('''CREATE TABLE sensor (sensorID NUMERIC, type TEXT, zone TEXT);''');
+cursor.execute('''CREATE TABLE IF NOT EXISTS sensor (sensorID NUMERIC, type TEXT, zone TEXT);''');
 
 cursor.execute('''INSERT INTO sensor values(1, "door", "kitchen")''');
 cursor.execute('''INSERT INTO sensor values(2, "temperature", "kitchen")''');

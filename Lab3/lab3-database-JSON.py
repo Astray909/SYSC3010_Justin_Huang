@@ -4,9 +4,9 @@ from urllib.parse import *
 import json
 import sqlite3
 
-dbconnect = sqlite3.connect("weather.db");
-dbconnect.row_factory = sqlite3.Row;
-cursor = dbconnect.cursor();
+dbconnect = sqlite3.connect("weather.db")
+dbconnect.row_factory = sqlite3.Row
+cursor = dbconnect.cursor()
 
 # The URL that is formatted: http://api.openweathermap.org/data/2.5/weather?APPID=a808bbf30202728efca23e099a4eecc7&units=imperial&q=ottawa
 
@@ -43,21 +43,21 @@ data = json.loads(results)
 current = data["main"]
 degreeSym = chr(176)
 
-temp = "Temperature: %d%sF" % (current["temp"], degreeSym );
-humidity = "Humidity: %d%%" % current["humidity"];
-pressure = "Pressure: %d" % current["pressure"];
+temp = "Temperature: %d%sF" % (current["temp"], degreeSym )
+humidity = "Humidity: %d%%" % current["humidity"]
+pressure = "Pressure: %d" % current["pressure"]
 print (temp)
 print (humidity)
 print (pressure)
 
 current = data["wind"]
-speed = "Wind : %d" % current["speed"];
-deg = "Degree : %d" % current["deg"];
+speed = "Wind : %d" % current["speed"]
+deg = "Degree : %d" % current["deg"]
 print(speed)
 print(deg)
 
-cursor.execute('''CREATE TABLE weatherInfo (temp TEXT, humidity TEXT, pressure TEXT, speed TEXT, deg TEXT);''');
-cursor.execute('''INSERT INTO weatherInfo values (?, ?, ?, ?, ?)''', (temp, humidity, pressure, speed, deg));
+cursor.execute('''CREATE TABLE IF NOT EXISTS weatherInfo (temp TEXT, humidity TEXT, pressure TEXT, speed TEXT, deg TEXT);''')
+cursor.execute('''INSERT INTO weatherInfo values (?, ?, ?, ?, ?)''', (temp, humidity, pressure, speed, deg))
 
-dbconnect.commit();
-dbconnect.close();
+dbconnect.commit()
+dbconnect.close()
