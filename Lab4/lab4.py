@@ -28,7 +28,7 @@ def updateTS():
         break
 
 if __name__ == "__main__":
-    print("Press joystick direction to send, press down to quit")
+    print("Press joystick in any direction to send, press down to quit")
     while True:
         events = sense.stick.get_events()
         if events:
