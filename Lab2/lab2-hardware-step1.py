@@ -53,12 +53,17 @@ while True:
         for event in events:
             if event.action != 'pressed':
                 continue
-            if event.direction == 'left' or event.direction == 'right' or event.direction == 'up' or event.direction == 'down':
+            if event.direction == 'left' or event.direction == 'right':
                 sense.set_pixels(STATE[state])
                 if state == 0:
                     state = 1
                 elif state == 1:
                     state = 0
+            if event.direction == 'up':
+                state = 1
+                sense.set_pixels(STATE[state])
+            if event.direction == 'down' :
+                sense.set_pixels(NONE)
             elif event.direction == 'middle':
                 sense.set_pixels(NONE)
                 exit()
