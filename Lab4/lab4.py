@@ -2,7 +2,7 @@ from sense_hat import SenseHat
 import httplib
 import urllib
 import time
-key = "54CDA6FJF4RCJ92C"
+labkey = "54CDA6FJF4RCJ92C"
 
 mykey = "E1KUNDON3N9T7KG7"
 
@@ -14,7 +14,7 @@ ident = "d"
 
 def updateTS():
     while True:
-        params = urllib.urlencode({'field1': cmail, 'field2': projectGroup, 'field3': ident, 'key':key }) 
+        params = urllib.urlencode({'field1': cmail, 'field2': projectGroup, 'field3': ident, 'key':labkey }) 
         headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
         conn = httplib.HTTPConnection("api.thingspeak.com:80")
         try:
@@ -28,12 +28,14 @@ def updateTS():
         break
 
 if __name__ == "__main__":
+    print("Press joystick direction to send, press down to quit")
     while True:
-        updateTS()
         events = sense.stick.get_events()
         if events:
             for event in events:
                 if event.action != 'pressed':
-                    continue
+                    updateTS()
+                    print("Uploaded")
+                    exit()
                 elif event.direction == 'middle':
                     exit()

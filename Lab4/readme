@@ -1,2 +1,5 @@
 [Justin Huang] feat:
 finished lab4, tested working on my own channel
+
+[Justin Huang] feat:
+changed from constantly pushing to thingspeak to only upload once when a senst HAT direction is detected 
