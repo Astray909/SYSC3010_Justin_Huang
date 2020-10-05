@@ -32,5 +32,5 @@ if __name__ == "__main__":
                         if event.action != 'pressed':
                             continue
                         elif event.direction == 'middle':
-                            sense.set_pixels(NONE)
+                            #sense.set_pixels(NONE)
                             exit()
